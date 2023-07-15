@@ -1,0 +1,1 @@
+docker build . -t kinnekode/texlive-luatex:bookworm-slim
