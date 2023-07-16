@@ -7,7 +7,7 @@ RUN apt-get update && apt-get upgrade -y && \
     perl-modules \
     liburi-encode-perl \
     # at this point also install gpg and gpg-agent to allow tlmgr's
-    # key subcommand to work correctly (see #21)
+    # key subcommand to work correctly (see #21 in texlive/texlive gitlab)
     gpg gpg-agent \
     # needed because of wget for the texlive installation program
     ca-certificates \
