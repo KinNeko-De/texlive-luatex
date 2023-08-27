@@ -52,13 +52,13 @@ jobs:
           echo "major_minor_patch=$MAJOR_MINOR_PATCH" >> $GITHUB_OUTPUT
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
-      - name: Build
-        uses: docker/build-push-action@v4
-        with:
-          context: .
-          file: ./dockerfile
-          push: false
-          tags: "kinnekode/texlive-luatex:${{ steps.semantic_version.outputs.semantic_version }}-bookworm-slim"
+      # - name: Build
+      #   uses: docker/build-push-action@v4
+      #   with:
+      #     context: .
+      #     file: ./dockerfile
+      #     push: false
+      #     tags: "kinnekode/texlive-luatex:${{ steps.semantic_version.outputs.semantic_version }}-bookworm-slim"
       - name: Create semantic versioning git tag for golang
         uses: actions/github-script@v6
         with:
@@ -66,7 +66,7 @@ jobs:
             github.rest.git.createRef({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              ref: "refs/tags/kinnekode/texlive-luatex:${{ steps.semantic_version.outputs.semantic_version }}-bookworm-slim",
+              ref: "refs/tags/kinnekode/${{ steps.semantic_version.outputs.semantic_version }}-bookworm-slim",
               sha: context.sha
             })
 
