@@ -51,7 +51,7 @@ jobs:
           echo "semantic_version=$SEMANTIC_VERSION" >> $GITHUB_OUTPUT
           echo "major_minor_patch=$MAJOR_MINOR_PATCH" >> $GITHUB_OUTPUT
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v4
+        uses: docker/setup-buildx-action@v2
       - name: Build
         uses: docker/build-push-action@v4
         with:
