@@ -66,7 +66,7 @@ jobs:
             github.rest.git.createRef({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              ref: "refs/tags/kinnekode/${{ steps.semantic_version.outputs.semantic_version }}-bookworm-slim",
+              ref: "refs/tags/v${{ steps.semantic_version.outputs.semantic_version }}-bookworm-slim",
               sha: context.sha
             })
 
