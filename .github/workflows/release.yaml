@@ -24,6 +24,9 @@ jobs:
         with:
           images: |
             kinnekode/texlive-luatex
+          flavor: |
+            latest=auto
+            suffix=-bookworm-slim
           tags: |
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
