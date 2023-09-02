@@ -1,7 +1,7 @@
 on:
   push:
 env:
-  MAJOR_MINOR_PATCH: 0.1.3
+  MAJOR_MINOR_PATCH: 0.1.4
 
 concurrency: ci-${{ github.ref }}
 
