@@ -1,4 +1,6 @@
 ARG IMAGE=debian:bookworm-slim
+# non root user that can run texlive
+ARG APP_UID=64198
 
 FROM ${IMAGE} AS installer
 
@@ -23,10 +25,11 @@ RUN wget -O - http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
 FROM ${IMAGE} AS runner
 
 # add non root user that can run texlive
-ARG APP_UID=1001
 RUN useradd -u ${APP_UID} appuser
-
 COPY --from=installer --chown=appuser:appuser --chmod=770 /texlive /texlive
 
-# add path
-ENV PATH="${PATH}:/texlive/bin/x86_64-linux"
+ENV \
+  # ADD texlive binaries TO PATH
+  PATH="${PATH}:/texlive/bin/x86_64-linux" \
+  # UID of the non-root user 'appuser'
+  APP_UID=${APP_UID}
