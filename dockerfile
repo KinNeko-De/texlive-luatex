@@ -24,7 +24,7 @@ FROM ${IMAGE} AS runner
 
 # add non root user that can run texlive
 ARG APP_UID=1001
-RUN useradd -u ${USER_UID} appuser
+RUN useradd -u ${APP_UID} appuser
 
 COPY --from=installer --chown=appuser:appuser --chmod=770 /texlive /texlive
 
