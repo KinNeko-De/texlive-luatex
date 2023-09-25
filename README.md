@@ -1,5 +1,5 @@
 # texlive-luatex
-Docker image to execute {LuaTeX](https://www.luatex.org/) using the [Texlive distribution](https://tug.org/texlive/).
+Docker image to execute [LuaTeX](https://www.luatex.org/) using the [Texlive distribution](https://tug.org/texlive/).
 The dockerfile is optimized for usage in containerized microservice.
 
 ## Usage
