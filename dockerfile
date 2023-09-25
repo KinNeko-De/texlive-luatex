@@ -22,7 +22,28 @@ RUN wget -O - http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
 
 FROM ${IMAGE} AS runner
 
-COPY --from=installer /texlive /texlive
+# non root user that can run texlive
+ARG APP_UID=64311
+ARG APP_GID=101
+# add non root user that can run texlive
+RUN groupadd \
+      -g ${APP_GID} \
+      --system \
+      app \
+    && useradd \
+      -u ${APP_UID} \
+      -g ${APP_GID} \
+      --shell /bin/false \
+      --system \
+      app 
 
-# add path
-ENV PATH="${PATH}:/texlive/bin/x86_64-linux"
+COPY --from=installer --chown=app:app --chmod=770 /texlive /texlive
+
+ENV \
+  # ADD texlive binaries TO PATH
+  PATH="${PATH}:/texlive/bin/x86_64-linux" \
+  # UID of the non-root user 'app'
+  APP_UID=${APP_UID} \
+  # GID of the non-root group 'app'
+  APP_GID=${APP_GID}
+
